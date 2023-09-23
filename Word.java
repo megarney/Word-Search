@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+//import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,7 +29,7 @@ public class Word{
     }
 
     //gets response from user
-    public static void getResponse(){
+    public static void getResponse() throws IOException{
         Scanner scan = new Scanner(System.in);
         response = scan.nextLine();
         if(!response.toLowerCase().equals(answer)){
@@ -37,7 +37,11 @@ public class Word{
             getResponse();
         }
         else{
-            System.out.println("Correct!");
+            System.out.println("Correct! Would you like to start a new game? 1 for yes, 2 for no");
+            response = scan.nextLine();
+            if(response.equals("1")){
+                newGame();
+            }
         }
         scan.close();
     }
@@ -56,5 +60,13 @@ public class Word{
         }
         
         System.out.println();
+    }
+
+    //initiates new game
+    public static void newGame() throws IOException{
+        SelectFiveLetterWord(); 
+        //System.out.println(Word.getAnswer());
+        printLetters();
+        getResponse();
     }
 }
