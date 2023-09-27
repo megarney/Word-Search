@@ -8,20 +8,9 @@ import java.util.stream.*;
 
 public class Word{
 
-    private static String answer = "";  //selects five letter word
+    private static String answer = ""; 
     private static String response = "";
     private static ArrayList<String> letters = new ArrayList<String>();
-    
-    //selects a random five letter word from sgb-words.txt file
-    public static void SelectFiveLetterWord() throws IOException{
-        int n = (int)Math.floor(Math.random() * (5757 - 0 + 1)); //selects random line from five letter word database
-        try (Stream<String> lines = Files.lines(Paths.get("sgb-words.txt"))){
-            answer = lines.skip(n).findFirst().get(); //returns the word from line n
-        }
-        catch(IOException e){
-            System.out.println(e);
-        }
-    }
 
     //returns answer
     public static String getAnswer(){
@@ -62,10 +51,14 @@ public class Word{
         System.out.println();
     }
 
+    /*public static boolean checkValid(String response){
+        
+    }*/
+
     //initiates new game
     public static void newGame() throws IOException{
-        SelectFiveLetterWord(); 
-        //System.out.println(Word.getAnswer());
+        answer = SelectWord.SelectFiveLetterWord(); 
+        System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
     }
