@@ -1,10 +1,10 @@
 import java.io.IOException;
-import java.nio.file.Files;
+//import java.nio.file.Files;
 //import java.nio.file.Path;
-import java.nio.file.Paths;
+//import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.stream.*;
+//import java.util.stream.*;
 
 public class Word{
 
@@ -47,7 +47,6 @@ public class Word{
             System.out.print(letters.get(rand));
             letters.remove(rand);
         }
-        
         System.out.println();
     }
 
@@ -58,7 +57,7 @@ public class Word{
     //initiates new game
     public static void newGame() throws IOException{
         answer = SelectWord.SelectFiveLetterWord(); 
-        System.out.println(Word.getAnswer());
+        //System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
     }
