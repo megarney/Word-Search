@@ -5,23 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-
 public class SaveFromDatabase {
     public static void main (String[] args) throws FileNotFoundException, IOException{
         try {
-            File database = new File("NewDatabase.csv");
+            File database = new File("Database-Related\\NewDatabase.csv");
             Scanner reader = new Scanner(database);
-            FileWriter fileWriterFive = new FileWriter("fiveLetterWords.txt");
+            FileWriter fileWriterFive = new FileWriter("Database-Related\\\\fiveLetterWords.txt");
             PrintWriter printWriterFive = new PrintWriter(fileWriterFive);
-            FileWriter fileWriterSix = new FileWriter("sixLetterWords.txt");
+            FileWriter fileWriterSix = new FileWriter("Database-Related\\\\sixLetterWords.txt");
             PrintWriter printWriterSix = new PrintWriter(fileWriterSix);
-            FileWriter fileWriterEight = new FileWriter("eightLetterWords.txt");
+            FileWriter fileWriterEight = new FileWriter("Database-Related\\eightLetterWords.txt");
             PrintWriter printWriterEight = new PrintWriter(fileWriterEight);
-            FileWriter fileWriterNine = new FileWriter("nineLetterWords.txt");
+            FileWriter fileWriterNine = new FileWriter("Database-Related\\\\nineLetterWords.txt");
             PrintWriter printWriterNine = new PrintWriter(fileWriterNine);
-            FileWriter fileWriterTwelve = new FileWriter("twelveLetterWords.txt");
+            FileWriter fileWriterTwelve = new FileWriter("Database-Related\\\\twelveLetterWords.txt");
             PrintWriter printWriterTwelve = new PrintWriter(fileWriterTwelve);
-            FileWriter fileWriterThirteen = new FileWriter("thirteenLetterWords.txt");
+            FileWriter fileWriterThirteen = new FileWriter("Database-Related\\\\thirteenLetterWords.txt");
             PrintWriter printWriterThirteen = new PrintWriter(fileWriterThirteen);
             while(reader.hasNextLine()){
                 String word = reader.nextLine();
