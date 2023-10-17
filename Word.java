@@ -72,7 +72,7 @@ public class Word{
     //initiates new game
     public static void newGame() throws IOException{
         selectDifficulty();
-        System.out.println(Word.getAnswer());
+        //System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
     }
