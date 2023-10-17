@@ -39,4 +39,19 @@ public class SelectWord {
         return answer;
     }
 
+    public static String checkCorrect(String response, String answer){
+        String output = "";
+        response += " ";
+        answer += " ";
+        for(int i = 0; i < answer.length(); i++){
+            if(response.substring(i, i+1).equals(answer.substring(i, i+1))){
+                output += response.substring(i, i+1);
+            }
+            else{
+                output += "_";
+            }
+        }
+        return output;
+    }
+
 }

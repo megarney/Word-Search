@@ -7,6 +7,7 @@ public class Word{
     private static Scanner scan = new Scanner(System.in);
     private static String answer = ""; 
     private static String addedAnswer = "";
+    private static String response = "";
     private static ArrayList<String> letters = new ArrayList<String>();
 
     //returns answer
@@ -16,10 +17,16 @@ public class Word{
 
     //gets response from user
     public static void getResponse() throws IOException{
-        String response = scan.nextLine();
+        response = scan.nextLine();
         if(!response.toLowerCase().equals(answer)){
-            System.out.println("Incorrect. Try again.");
-            getResponse();
+            if(response.length() != answer.length()){
+                System.out.println("Invalid word length. Try again.");
+                getResponse();
+            }
+            else{
+                System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer));
+                getResponse();
+            }
         }
         else{
             System.out.println("Correct! Would you like to start a new game? 1 for yes, 2 for no");
@@ -50,7 +57,7 @@ public class Word{
     public static void selectDifficulty() throws IOException{
         answer = SelectWord.SelectFiveLetterWord();
         System.out.println("Select Difficulty Level: 1 for easy, 2 for medium, 3 for hard.");
-        String response = scan.nextLine();
+        response = scan.nextLine();
         if(response.equals("2")){
             addedAnswer = SelectWord.addLetters(2, answer);
         }
@@ -65,7 +72,7 @@ public class Word{
     //initiates new game
     public static void newGame() throws IOException{
         selectDifficulty();
-        //System.out.println(Word.getAnswer());
+        System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
     }
