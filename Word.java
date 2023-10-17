@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Word{
 
     private static String answer = ""; 
-    private static String response = "";
     private static ArrayList<String> letters = new ArrayList<String>();
 
     //returns answer
@@ -20,7 +19,7 @@ public class Word{
     //gets response from user
     public static void getResponse() throws IOException{
         Scanner scan = new Scanner(System.in);
-        response = scan.nextLine();
+        String response = scan.nextLine();
         if(!response.toLowerCase().equals(answer)){
             System.out.println("Incorrect. Try again.");
             getResponse();
@@ -40,7 +39,6 @@ public class Word{
         for(int i = 0; i < answer.length(); i++){
             letters.add(answer.substring(i, i+1));
         }
-
         int rand;
         for(int i = 0; i < answer.length(); i++){
             rand = (int)Math.floor(Math.random() * (letters.size()));
@@ -50,13 +48,23 @@ public class Word{
         System.out.println();
     }
 
-    /*public static boolean checkValid(String response){
-        
-    }*/
+    public static void selectDifficulty() throws IOException{
+        answer = SelectWord.SelectFiveLetterWord();
+        System.out.println("Select Difficulty Level: 1 for easy, 2 for medium, 3 for hard.");
+        Scanner scan = new Scanner(System.in);
+        String response = scan.nextLine();
+        scan.close();
+        if(response.equals("2")){
+            answer = SelectWord.addLetters(2, answer);
+        }
+        else if(response.equals("3")){
+            answer = SelectWord.addLetters(3, answer);
+        }
+    }
 
     //initiates new game
     public static void newGame() throws IOException{
-        answer = SelectWord.SelectFiveLetterWord(); 
+        selectDifficulty();
         //System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
