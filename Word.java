@@ -1,14 +1,12 @@
 import java.io.IOException;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-//import java.util.stream.*;
 
 public class Word{
 
+    private static Scanner scan = new Scanner(System.in);
     private static String answer = ""; 
+    private static String addedAnswer = "";
     private static ArrayList<String> letters = new ArrayList<String>();
 
     //returns answer
@@ -18,7 +16,6 @@ public class Word{
 
     //gets response from user
     public static void getResponse() throws IOException{
-        Scanner scan = new Scanner(System.in);
         String response = scan.nextLine();
         if(!response.toLowerCase().equals(answer)){
             System.out.println("Incorrect. Try again.");
@@ -30,17 +27,19 @@ public class Word{
             if(response.equals("1")){
                 newGame();
             }
+            if(response.equals("2")){
+                scan.close();
+            }
         }
-        scan.close();
     }
 
     //prints letters in random order
     public static void printLetters(){
-        for(int i = 0; i < answer.length(); i++){
-            letters.add(answer.substring(i, i+1));
+        for(int i = 0; i < addedAnswer.length(); i++){
+            letters.add(addedAnswer.substring(i, i+1));
         }
         int rand;
-        for(int i = 0; i < answer.length(); i++){
+        for(int i = 0; i < addedAnswer.length(); i++){
             rand = (int)Math.floor(Math.random() * (letters.size()));
             System.out.print(letters.get(rand));
             letters.remove(rand);
@@ -51,14 +50,15 @@ public class Word{
     public static void selectDifficulty() throws IOException{
         answer = SelectWord.SelectFiveLetterWord();
         System.out.println("Select Difficulty Level: 1 for easy, 2 for medium, 3 for hard.");
-        Scanner scan = new Scanner(System.in);
         String response = scan.nextLine();
-        scan.close();
         if(response.equals("2")){
-            answer = SelectWord.addLetters(2, answer);
+            addedAnswer = SelectWord.addLetters(2, answer);
         }
         else if(response.equals("3")){
-            answer = SelectWord.addLetters(3, answer);
+            addedAnswer = SelectWord.addLetters(3, answer);
+        }
+        else{
+            addedAnswer = answer;
         }
     }
 

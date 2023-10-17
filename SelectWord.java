@@ -32,6 +32,9 @@ public class SelectWord {
             char c = (char)(r.nextInt(26) + 'a');
             added += c;
         }
+        if (added.equals("r") || added.equals("d") || added.equals("y") || added.equals("s")){
+                addLetters(difficulty, answer);
+        }
         answer += added;
         return answer;
     }
