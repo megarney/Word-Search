@@ -6,6 +6,12 @@ import java.util.stream.Stream;
 
 public class SelectWord {
 
+    private static String output;
+
+    public static String getOutput(){
+        return output;
+    }
+
     //selects a random five letter word from sgb-words.txt file
     public static String SelectFiveLetterWord() throws IOException{
         String answer = "";
@@ -35,12 +41,12 @@ public class SelectWord {
         if (added.equals("r") || added.equals("d") || added.equals("y") || added.equals("s")){
                 addLetters(difficulty, answer);
         }
-        answer += added;
+        answer += added.toLowerCase();
         return answer;
     }
 
     public static String checkCorrect(String response, String answer){
-        String output = "";;
+        output = "";
         for(int i = 0; i < answer.length(); i++){
             if(response.charAt(i)==(answer.charAt(i))){
                 output += response.substring(i, i+1);

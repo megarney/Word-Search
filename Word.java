@@ -18,13 +18,18 @@ public class Word{
     //gets response from user
     public static void getResponse() throws IOException{
         response = scan.nextLine();
-        if(!response.toLowerCase().equals(answer)){
+        Hint.hint();
+        if(response.equals("1")){
+            Hint.giveHint();
+            getResponse();
+        }
+        else if(!response.toLowerCase().equals(answer)){
             if(response.length() != answer.length()){
-                System.out.println("Invalid word length. Try again.");
+                System.out.println("Invalid word length. Enter 1 to recieve a hint.");
                 getResponse();
             }
             else{
-                System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer));
+                System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to recieve a hint.");
                 getResponse();
             }
         }
