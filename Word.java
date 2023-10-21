@@ -1,66 +1,51 @@
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.stream.Stream;
+import java.util.Scanner;
 
 public class Word{
 
-    private static ArrayList<String> letters = new ArrayList<String>();
+    private static Scanner scan = new Scanner(System.in);
     private static String answer = ""; 
     private static String addedAnswer = "";
-    private static String output;
+    private static String response = "";
+    private static ArrayList<String> letters = new ArrayList<String>();
 
-    public static String getOutput(){
-        return output;
-    }
-
-    //selects a random five letter word from sgb-words.txt file
-    public static String SelectFiveLetterWord() throws IOException{
-        int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
-        //int n = (int)Math.floor(Math.random() * (5 - 0 + 1));
-        try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\fiveLetterWords.txt"))){
-        //try (Stream<String> lines = Files.lines(Paths.get("test-words.txt"))){
-            answer = lines.skip(n).findFirst().get(); //returns the word from line n
-            if(UsedWords.checkUsed(answer) == true){
-                return SelectFiveLetterWord();
-            }
-            return answer;
-        }
-        catch(IOException e){
-            System.out.println(e);
-        }
-        return "nv"; //not valid
-    }
-
-    public static String addLetters(int difficulty, String answer){
-        String added = "";
-        if(answer.length()==5 && difficulty==2){
-            Random r = new Random();
-            char c = (char)(r.nextInt(26) + 'a');
-            added += c;
-        }
-        if (added.equals("r") || added.equals("d") || added.equals("y") || added.equals("s")){
-                addLetters(difficulty, answer);
-        }
-        answer += added.toLowerCase();
+    //returns answer
+    public static String getAnswer(){
         return answer;
     }
 
-    public static String checkCorrect(String response, String answer){
-        output = "";
-        for(int i = 0; i < answer.length(); i++){
-            if(response.charAt(i)==(answer.charAt(i))){
-                output += response.substring(i, i+1);
+    //gets response from user
+    public static void getResponse() throws IOException{
+        response = scan.nextLine();
+        Hint.hint();
+        if(response.equals("1")){
+            Hint.giveHint();
+            getResponse();
+        }
+        else if(!response.toLowerCase().equals(answer)){
+            if(response.length() != answer.length()){
+                System.out.println("Invalid word length. Enter 1 to recieve a hint.");
+                getResponse();
             }
             else{
-                output += "_";
+                System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to recieve a hint.");
+                getResponse();
             }
         }
-        return output;
+        else{
+            System.out.println("Correct! Would you like to start a new game? 1 for yes, 2 for no");
+            response = scan.nextLine();
+            if(response.equals("1")){
+                newGame();
+            }
+            if(response.equals("2")){
+                scan.close();
+            }
+        }
     }
 
+    //prints letters in random order
     public static void printLetters(){
         for(int i = 0; i < addedAnswer.length(); i++){
             letters.add(addedAnswer.substring(i, i+1));
@@ -74,4 +59,26 @@ public class Word{
         System.out.println();
     }
 
+    public static void selectDifficulty() throws IOException{
+        answer = SelectWord.SelectFiveLetterWord();
+        System.out.println("Select Difficulty Level: 1 for easy, 2 for medium, 3 for hard.");
+        response = scan.nextLine();
+        if(response.equals("2")){
+            addedAnswer = SelectWord.addLetters(2, answer);
+        }
+        else if(response.equals("3")){
+            addedAnswer = SelectWord.addLetters(3, answer);
+        }
+        else{
+            addedAnswer = answer;
+        }
+    }
+
+    //initiates new game
+    public static void newGame() throws IOException{
+        selectDifficulty();
+        //System.out.println(Word.getAnswer());
+        printLetters();
+        getResponse();
+    }
 }

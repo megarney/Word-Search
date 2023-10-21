@@ -10,7 +10,7 @@ public class Hint {
     //method that prints hint
     //needs to be able to give a hint that hasn't been revealed already
     public static void hint(){
-        wordle = Word.getOutput();
+        wordle = SelectWord.getOutput();
         answer = Word.getAnswer();
         output = "";
         hasFirstHint = false;
@@ -34,7 +34,6 @@ public class Hint {
             used++;
             available--;
             System.out.println(output);
-            Points.usedHint();
         }
         else if(!wordle.equals("")&&used==0){
             for(int i = 0; i < wordle.length(); i++){
@@ -49,7 +48,6 @@ public class Hint {
             used++;
             available--;
             System.out.println(output);
-            Points.usedHint();
         }
         else if(used>=1 && available!=0){
             String newOutput = "";
@@ -63,13 +61,9 @@ public class Hint {
                 }
             }
             used++;
-            available--;  
+            available--;
             output = newOutput;
             System.out.println(output);
-            Points.usedHint();
-            if(available==0){
-                Points.allHints();
-            }
         }
         else if(available==0){
             System.out.println("No hints available.");
