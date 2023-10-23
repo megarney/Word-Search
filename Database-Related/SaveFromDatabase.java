@@ -1,3 +1,7 @@
+/*
+ * Reads through the database and prints to different text files based on the word length
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;

@@ -1,3 +1,8 @@
+/*
+ * Keeps track of all of the words that have been displayed to the user in a hashmap
+ * Hashmap : key = the word sorted, value = the word unsorted
+ */
+
 import java.util.Arrays;
 import java.util.HashMap;
 

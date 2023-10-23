@@ -1,3 +1,10 @@
+/*
+ * Selects word from database based on the word length
+ * Checks with UsedWords to make sure the word has not been used before
+ * Adds letters based on difficulty
+ * If the answer is wrong, check which letters are in the right spot
+ */
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -5,9 +12,13 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class SelectWord {
-
+    /*
+     * the output when checking which letters are in the right spot
+     * ex: answer is bingo, guess is bnigo, output is b__go
+     */
     private static String output;
 
+    //returns output
     public static String getOutput(){
         return output;
     }
@@ -16,9 +27,7 @@ public class SelectWord {
     public static String SelectFiveLetterWord() throws IOException{
         String answer = "";
         int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
-        //int n = (int)Math.floor(Math.random() * (5 - 0 + 1));
         try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\fiveLetterWords.txt"))){
-        //try (Stream<String> lines = Files.lines(Paths.get("test-words.txt"))){
             answer = lines.skip(n).findFirst().get(); //returns the word from line n
             if(UsedWords.checkUsed(answer) == true){
                 return SelectFiveLetterWord();
@@ -31,6 +40,7 @@ public class SelectWord {
         return "nv"; //not valid
     }
 
+    //adds letters based on difficulty
     public static String addLetters(int difficulty, String answer){
         String added = "";
         if(answer.length()==5 && difficulty==2){
@@ -45,6 +55,7 @@ public class SelectWord {
         return answer;
     }
 
+    //if guess is wrong, checks which letters are in the right spot
     public static String checkCorrect(String response, String answer){
         output = "";
         for(int i = 0; i < answer.length(); i++){

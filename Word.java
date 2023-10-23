@@ -1,14 +1,20 @@
+/*
+ * Initiates a new game
+ * Gets all responses from user
+ * Prints letters in a random order
+ * Lets user select a difficulty that will add extra letters
+ */
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Word{
-
     private static Scanner scan = new Scanner(System.in);
-    private static String answer = ""; 
-    private static String addedAnswer = "";
+    private static String answer = ""; //keeps track of answer
+    private static String addedAnswer = ""; //answer with added letters
     private static String response = "";
-    private static ArrayList<String> letters = new ArrayList<String>();
+    private static ArrayList<String> letters = new ArrayList<String>(); //used to print letters in a random order
 
     //returns answer
     public static String getAnswer(){
@@ -59,6 +65,7 @@ public class Word{
         System.out.println();
     }
 
+    //lets user select a difficulty
     public static void selectDifficulty() throws IOException{
         answer = SelectWord.SelectFiveLetterWord();
         System.out.println("Select Difficulty Level: 1 for easy, 2 for medium, 3 for hard.");

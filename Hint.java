@@ -1,14 +1,12 @@
 public class Hint {
-    //keep track of how many hints used and how many hints available
-    private static int used;
-    private static int available;
-    private static String output;
-    private static String wordle;
-    private static String answer;
-    private static boolean hasFirstHint;
+    private static int used; //keeps track of the number of hints used
+    private static int available; //keeps track of the number of hints that can be used
+    private static String output; //keeps track of what the hint with print
+    private static String wordle; //keeps track of what letters the user already has in the right spot
+    private static String answer; //keeps track of the answer
+    private static boolean hasFirstHint; //tells whether the user has had their first hint
     
-    //method that prints hint
-    //needs to be able to give a hint that hasn't been revealed already
+    //resets the hint when the user first asks for a hint
     public static void hint(){
         wordle = SelectWord.getOutput();
         answer = Word.getAnswer();
@@ -17,10 +15,12 @@ public class Hint {
         used = 0;
     }
 
+    //returns whether or not user has had their first hint
     public static boolean getHasFirstHint(){
         return hasFirstHint;
     }
 
+    //gives hint
     public static void giveHint(){
         hasFirstHint = true;
         boolean hasHint = false;
