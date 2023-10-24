@@ -1,3 +1,7 @@
+/*
+ * Determines and prints hints to the user
+ */
+
 public class Hint {
     private static int used; //keeps track of the number of hints used
     private static int available; //keeps track of the number of hints that can be used
