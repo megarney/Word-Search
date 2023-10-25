@@ -17,6 +17,8 @@ public class Word{
     private static ArrayList<String> letters = new ArrayList<String>(); //used to print letters in a random order
     private static String lastDisplayed;
     private static String scrambled;
+    private static int difficulty;
+    private static int level;
 
     //returns answer
     public static String getAnswer(){
@@ -29,6 +31,14 @@ public class Word{
 
     public static String getScrambled(){
         return scrambled;
+    }
+
+    public static int getDifficulty(){
+        return difficulty;
+    }
+
+    public static int getLevel(){
+        return level;
     }
 
     //gets response from user
@@ -64,6 +74,7 @@ public class Word{
     public static void correct() throws IOException{
         Streak.increaseStreak();
         Megash.calculateCash();
+        System.out.println("===================");
         System.out.println("Correct!\nPoints Earned: " + Points.getPoints() + "\nMegash: $" + Megash.getCash() + "\nWould you like to start a new game? 1 for yes, 2 for no");
         response = scan.nextLine();
         if(response.equals("1")){
@@ -91,25 +102,45 @@ public class Word{
 
     //lets user select a difficulty
     public static void selectDifficulty() throws IOException{
-        answer = SelectWord.SelectFiveLetterWord();
-        System.out.println("Select Difficulty Level: 1 for easy, 2 for medium, 3 for hard.");
+        System.out.println("Select Difficulty: 1 for easy, 2 for medium, 3 for hard.");
         response = scan.nextLine();
         if(response.equals("2")){
-            addedAnswer = SelectWord.addLetters(2, answer);
+            difficulty = 2;
+            addedAnswer = SelectWord.addLetters();
         }
         else if(response.equals("3")){
-            addedAnswer = SelectWord.addLetters(3, answer);
+            difficulty = 3;
+            addedAnswer = SelectWord.addLetters();
         }
         else{
-            addedAnswer = answer;
+            addedAnswer = answer.toLowerCase();
+            difficulty = 1;
         }
-        Market.newGame();
-        Points.points();
         System.out.println("===================");
+    }
+
+    public static void selectLevel() throws IOException{
+        System.out.println("Select Level: 1 for a five letter word, 2 for an eight letter word, 3 for a twelve letter word.");
+        response = scan.nextLine();
+        if(response.equals("2")){
+            answer = SelectWord.SelectEightLetterWord();
+            level = 2;
+        }
+        else if(response.equals("3")){
+            answer = SelectWord.SelectTwelveLetterWord();
+            level = 3;
+        }
+        else{
+            answer = SelectWord.SelectFiveLetterWord();
+            level = 1;
+        }
     }
 
     //initiates new game
     public static void newGame() throws IOException{
+        selectLevel();
+        Market.newGame();
+        Points.points();
         selectDifficulty();
         //System.out.println(Word.getAnswer());
         printLetters();

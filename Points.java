@@ -10,7 +10,26 @@ public class Points {
 
     //starts points at 100 plus the streak multiplier
     public static void points(){
-        totalPoints = 100 + Streak.streakMultiplier();
+        totalPoints = 100 + Streak.streakMultiplier() + getMult(Word.getDifficulty()) + getMult(Word.getLevel());
+    }
+
+    /*
+     * Calculates the multiplier for difficulty and level
+     * Difficulty and Level 1 = +0
+     * Difficulty and Level 2 = +10
+     * Difficulty and Level 3 = +20
+     */
+    public static int getMult(int difLev){
+        if(difLev == 1){
+            return 0;
+        }
+        else if(difLev == 2){
+            return 10;
+        }
+        else if(difLev == 3){
+            return 20;
+        }
+        return 0;
     }
 
     //method to get the current number of poitns

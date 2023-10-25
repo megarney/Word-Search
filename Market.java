@@ -61,7 +61,7 @@ public class Market {
     //display all items for sale
     public static void displayMarket() throws IOException{
         System.out.println("===================");
-        System.out.println("Megash: " + Megash.getCash());
+        System.out.println("Megash: $" + Megash.getCash());
         System.out.println("Market:");
         System.out.println("Hint: Reveal the placement of one letter in the word for " + hintCost + " Megash"); 
         System.out.println("Auto-Win: Reveal the full word for 50 Megash");

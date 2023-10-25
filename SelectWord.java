@@ -23,7 +23,7 @@ public class SelectWord {
         return output;
     }
 
-    //selects a random five letter word from sgb-words.txt file
+    //selects a random five letter word
     public static String SelectFiveLetterWord() throws IOException{
         String answer = "";
         int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
@@ -40,9 +40,45 @@ public class SelectWord {
         return "nv"; //not valid
     }
 
+    //selects a random eight letter word
+    public static String SelectEightLetterWord() throws IOException{
+        String answer = "";
+        int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
+        try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\eightLetterWords.txt"))){
+            answer = lines.skip(n).findFirst().get(); //returns the word from line n
+            if(UsedWords.checkUsed(answer) == true){
+                return SelectEightLetterWord();
+            }
+            return answer;
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+        return "nv"; //not valid
+    }
+
+    //selects a random twelve letter word
+    public static String SelectTwelveLetterWord() throws IOException{
+        String answer = "";
+        int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
+        try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\twelveLetterWords.txt"))){
+            answer = lines.skip(n).findFirst().get(); //returns the word from line n
+            if(UsedWords.checkUsed(answer) == true){
+                return SelectTwelveLetterWord();
+            }
+            return answer;
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+        return "nv"; //not valid
+    }
+
+    /* 
     //adds letters based on difficulty
     public static String addLetters(int difficulty, String answer){
         String added = "";
+        String addedAnswer = answer;
         if(answer.length()==5 && difficulty==2){
             Random r = new Random();
             char c = (char)(r.nextInt(26) + 'a');
@@ -51,8 +87,34 @@ public class SelectWord {
         if (added.equals("r") || added.equals("d") || added.equals("y") || added.equals("s")){
                 addLetters(difficulty, answer);
         }
-        answer += added.toLowerCase();
-        return answer;
+        addedAnswer += added.toLowerCase();
+        return addedAnswer;
+    }
+    */
+
+    public static String addLetters(){
+        int difficulty = Word.getDifficulty();
+        String added = "";
+        String addedAnswer = Word.getAnswer();
+        int numAdded = 0;
+        Random r;
+        char c;
+        if(difficulty==2){
+            numAdded = 1;
+        }
+        else if(difficulty==3){
+            numAdded = 2;
+        }
+        for(int i = 1; i <= numAdded; i++){
+            r = new Random();
+            c = (char)(r.nextInt(26) + 'a');
+            if(c == 'r' || c == 'd' || c == 'y' || c == 's'){
+                addLetters();
+            }
+            added += c;
+        }
+        addedAnswer += added.toLowerCase();
+        return addedAnswer;
     }
 
     //if guess is wrong, checks which letters are in the right spot

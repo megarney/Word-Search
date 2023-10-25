@@ -20,8 +20,8 @@ public class Streak {
         streak=0;
     }
 
-    //used in points to add 20 points per streak number
+    //used in points to add 10 points per streak number
     public static int streakMultiplier(){
-        return streak*20;
+        return streak*10;
     }
 }
