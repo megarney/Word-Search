@@ -3,7 +3,7 @@
  */
 
 public class Megash {
-    private static int cash = 200; //keeps track of balance
+    private static int cash; //keeps track of balance
 
     //returns cash amount
     public static int getCash(){
@@ -12,7 +12,7 @@ public class Megash {
 
     //at the end of a game, calculates the number of cash earned
     public static void calculateCash(){
-        cash = Points.getPoints()/10;
+        cash = cash + Points.getPoints()/10;
     }
 
     /*

@@ -38,6 +38,7 @@ public class Hint {
             used++;
             available--;
             System.out.println(output);
+            Points.usedHint();
         }
         else if(!wordle.equals("")&&used==0){
             for(int i = 0; i < wordle.length(); i++){
@@ -52,6 +53,7 @@ public class Hint {
             used++;
             available--;
             System.out.println(output);
+            Points.usedHint();
         }
         else if(used>=1 && available!=0){
             String newOutput = "";
@@ -68,6 +70,7 @@ public class Hint {
             available--;
             output = newOutput;
             System.out.println(output);
+            Points.usedHint();
         }
         else if(available==0){
             System.out.println("No hints available.");

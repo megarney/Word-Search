@@ -34,7 +34,7 @@ public class Market {
     
     //buy a hint only if the user has enough Megash and has not used the max number of hints
     public static void hint(){
-        if(hintsAvailable != 0){
+        if(hintsAvailable == 0){
             System.out.println("You have already used the max number of hints for this game");
         }
         else if(Megash.spendCash(hintCost)){
@@ -60,6 +60,8 @@ public class Market {
 
     //display all items for sale
     public static void displayMarket() throws IOException{
+        System.out.println("===================");
+        System.out.println("Megash: " + Megash.getCash());
         System.out.println("Market:");
         System.out.println("Hint: Reveal the placement of one letter in the word for " + hintCost + " Megash"); 
         System.out.println("Auto-Win: Reveal the full word for 50 Megash");
@@ -71,8 +73,9 @@ public class Market {
     public static void getResponse() throws IOException{
         response = scan.nextInt();
         if(response == 1){
+            System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println(Word.getLastDisplayed());
+            System.out.println(Word.getScrambled() + "\n" + Word.getLastDisplayed());
             Word.getResponse();
         }
         else if(response == 2){
@@ -83,21 +86,25 @@ public class Market {
 
     //method that lets the user buy an item
     public static void buy() throws IOException{
+        System.out.println("===================");
         System.out.println("Press 1 to buy a Hint");
         System.out.println("Press 2 to buy an Auto-Win");
         response = scan.nextInt();
         if(response == 1){
+            System.out.println("===================");
             System.out.println("Returned to game mode.");
             System.out.println(Word.getScrambled());
             hint();
             Word.getResponse();
         }
         else if(response == 2){
+            System.out.println("===================");
             System.out.println("Returned to game mode.");
             autoWin();
             Word.getResponse();
         }
         else{
+            System.out.println("===================");
             System.out.println("Response invalid. Please try again.");
             buy();
         }
