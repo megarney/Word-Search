@@ -15,7 +15,7 @@ public class Word{
     private static String addedAnswer = ""; //answer with added letters
     private static String response = "";
     private static ArrayList<String> letters = new ArrayList<String>(); //used to print letters in a random order
-    private static String lastDisplayed;
+    private static String lastDisplayed; 
     private static String scrambled;
     private static int difficulty;
     private static int level;
@@ -56,6 +56,7 @@ public class Word{
         }
     }
 
+    //if response from user is incorrect - takes away points and loses win streak
     public static void incorrect() throws IOException{
         Points.failedAttempt();
         Streak.loseStreak();
@@ -71,6 +72,7 @@ public class Word{
         }
     }
 
+    //if response from user is correct - increases streak and calculates total cash
     public static void correct() throws IOException{
         Streak.increaseStreak();
         Megash.calculateCash();

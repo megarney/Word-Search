@@ -92,6 +92,10 @@ public class SelectWord {
     }
     */
 
+    /*
+     * Adds 1 letter for difficulty 2
+     * Adds 2 letters for difficulty 3
+     */
     public static String addLetters(){
         int difficulty = Word.getDifficulty();
         String added = "";
