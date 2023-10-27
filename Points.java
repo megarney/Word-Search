@@ -53,9 +53,13 @@ public class Points {
         return 0;
     }
 
-    //method to get the current number of poitns
+    //method to get the current number of points
+    //minimum number of points is 0
     public static int getPoints(){
-        return totalPoints;
+        if(totalPoints >= 0){
+            return totalPoints;
+        }
+        return 0;
     }
 
     //failed attempt takes away 10 points
