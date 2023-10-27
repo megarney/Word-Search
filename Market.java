@@ -17,7 +17,12 @@ public class Market {
     //private static Scanner scan = new Scanner(System.in);
     private static String response;
 
-    //resets hintsUsed
+    /*
+     * Keeps track of how many hints are available per game
+     * 5 letters - 2 hints
+     * 8 letters - 3 hints
+     * 12 letters - 4 hints
+     */
     public static void newGame(){
         hintCost = 20;
         int wordLength = Word.getAnswer().length();

@@ -40,6 +40,7 @@ public class Hint {
             System.out.println(output);
             Points.usedHint();
         }
+        //first hint after an output
         else if(!wordle.equals("")&&used==0){
             for(int i = 0; i < wordle.length(); i++){
                 if(wordle.charAt(i)=='_' && hasHint == false){
@@ -55,6 +56,7 @@ public class Hint {
             System.out.println(output);
             Points.usedHint();
         }
+        //hints after the first
         else if(used>=1 && available!=0){
             String newOutput = "";
             for(int i = 0; i < output.length(); i++){
@@ -72,6 +74,7 @@ public class Hint {
             System.out.println(output);
             Points.usedHint();
         }
+        //no more hints available for that game
         else if(available==0){
             System.out.println("No hints available.");
         }
