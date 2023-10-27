@@ -15,28 +15,32 @@ public class Word{
     private static String addedAnswer = ""; //answer with added letters
     private static String response = "";
     private static ArrayList<String> letters = new ArrayList<String>(); //used to print letters in a random order
-    private static String lastDisplayed; 
-    private static String scrambled;
-    private static int difficulty;
-    private static int level;
+    private static String lastDisplayed;  //keeps track of what was last displayed to the user - used for Market
+    private static String scrambled; //keeps track of the original scrambled word - used for Market
+    private static int difficulty; //keeps track of the difficulty - used to calculate points
+    private static int level; //keeps track of the level - used to calculate points
 
-    //returns answer
+    //gets answer
     public static String getAnswer(){
         return answer;
     }
 
+    //gets last displayed
     public static String getLastDisplayed(){
         return lastDisplayed;
     }
 
+    //gets scrambled
     public static String getScrambled(){
         return scrambled;
     }
 
+    //gets difficulty
     public static int getDifficulty(){
         return difficulty;
     }
 
+    //gets level
     public static int getLevel(){
         return level;
     }
@@ -60,6 +64,7 @@ public class Word{
     public static void incorrect() throws IOException{
         Points.failedAttempt();
         Streak.loseStreak();
+        Attempt.failedAttempt();
         if(response.length() != answer.length()){
             System.out.println("Invalid word length. Enter 1 to go to the Market.");
             lastDisplayed = "Invalid word length.";
@@ -95,14 +100,23 @@ public class Word{
         int rand;
         for(int i = 0; i < addedAnswer.length(); i++){
             rand = (int)Math.floor(Math.random() * (letters.size()));
-            System.out.print(letters.get(rand));
             scrambled += letters.get(rand);
             letters.remove(rand);
         }
-        System.out.println();
+        if(!scrambled.equals(answer)){
+            System.out.println(scrambled);
+        }
+        else{
+            printLetters();
+        }
     }
 
-    //lets user select a difficulty
+    /*
+     * Lets user select difficulty
+     * 1 - adds no extra letters
+     * 2 - adds 1 extra letter
+     * 3 - addes 2 extra letters
+     */
     public static void selectDifficulty() throws IOException{
         System.out.println("Select Difficulty: 1 for easy, 2 for medium, 3 for hard.");
         response = scan.nextLine();
@@ -121,6 +135,13 @@ public class Word{
         System.out.println("===================");
     }
 
+    /*
+     * Lets user select a level
+     * 1 - 5 letter word
+     * 2 - 8 letter word
+     * 3 - 12 letter word
+     * Selects the answer
+     */
     public static void selectLevel() throws IOException{
         System.out.println("Select Level: 1 for a five letter word, 2 for an eight letter word, 3 for a twelve letter word.");
         response = scan.nextLine();
@@ -138,11 +159,18 @@ public class Word{
         }
     }
 
-    //initiates new game
+    /*
+     * 1. Lets the user select the level/word length
+     * 2 & 3. Resets the Market and Points
+     * 4. Lets the user select the difficulty/extra letters
+     * 5. Prints letters in a random order
+     * 6. Gets users input
+     */
     public static void newGame() throws IOException{
         selectLevel();
         Market.newGame();
         Points.points();
+        Attempt.attempts();
         selectDifficulty();
         //System.out.println(Word.getAnswer());
         printLetters();

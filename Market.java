@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Market {
-    private static int hintCost;
-    private static int hintsAvailable;
+    private static int hintCost; //keeps track of the current cost of a hint
+    private static int hintsAvailable; //keeps track of how many hints are available for the game
     private static Scanner scan = new Scanner(System.in);
     private static int response;
 
