@@ -163,19 +163,19 @@ public class Word{
     }
 
     /*
-     * 1. Lets the user select the level/word length
-     * 2 & 3 & 4 & 5. Resets the Market, points, attempts, and cash
-     * 6. Lets the user select the difficulty/extra letters
-     * 7. Prints letters in a random order
-     * 8. Gets users input
+     * Lets the user select the level/word length
+     * Resets the Market, points, attempts, and cash
+     * Lets the user select the difficulty/extra letters
+     * Prints letters in a random order
+     * Gets users input
      */
     public static void newGame() throws IOException{
         selectLevel();
+        selectDifficulty();
         Market.newGame();
         Points.points();
         Attempt.attempts();
         Megash.newGame();
-        selectDifficulty();
         //System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
