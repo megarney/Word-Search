@@ -3,16 +3,28 @@
  */
 
 public class Megash {
-    private static int cash = 50; //keeps track of balance
+    private static int totalCash; //keeps track of balance
+    private static int cash; //keeps track of cash for that game
 
-    //returns cash amount
+    //resets cash
+    public static void newGame(){
+        cash = 0;
+    }
+
+    //returns cash total
+    public static int getTotalCash(){
+        return totalCash;
+    }
+
+    //returns game's cash
     public static int getCash(){
         return cash;
     }
 
     //at the end of a game, calculates the number of cash earned
     public static void calculateCash(){
-        cash = cash + Points.getPoints()/10;
+        cash = Points.getPoints()/10;
+        totalCash = totalCash + cash; 
     }
 
     /*
@@ -22,11 +34,11 @@ public class Megash {
      * If it won't go negative, cash will be spent and will return true
      */
     public static boolean spendCash(int spend){
-        if(spend > cash){
+        if(spend > totalCash){
             return false;
         }
         else{
-            cash -= spend;
+            totalCash -= spend;
             return true;
         }
     }

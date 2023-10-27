@@ -84,7 +84,7 @@ public class Word{
         Streak.increaseStreak();
         Megash.calculateCash();
         System.out.println("===================");
-        System.out.println("Correct!\nPoints Earned: " + Points.getPoints() + "\nMegash: $" + Megash.getCash() + "\nWould you like to start a new game? 1 for yes, 2 for no");
+        System.out.println("Correct!\nPoints Earned: " + Points.getPoints() + "\nMegash Earned: $" + Megash.getCash() + "\nMegash Total: $" + Megash.getTotalCash() + "\nWould you like to start a new game? 1 for yes, 2 for no");
         response = scan.nextLine();
         if(response.equals("1")){
             System.out.println("===================");
@@ -164,16 +164,17 @@ public class Word{
 
     /*
      * 1. Lets the user select the level/word length
-     * 2 & 3 & 4. Resets the Market and Points
-     * 5. Lets the user select the difficulty/extra letters
-     * 6. Prints letters in a random order
-     * 7. Gets users input
+     * 2 & 3 & 4 & 5. Resets the Market, points, attempts, and cash
+     * 6. Lets the user select the difficulty/extra letters
+     * 7. Prints letters in a random order
+     * 8. Gets users input
      */
     public static void newGame() throws IOException{
         selectLevel();
         Market.newGame();
         Points.points();
         Attempt.attempts();
+        Megash.newGame();
         selectDifficulty();
         System.out.println(Word.getAnswer());
         printLetters();
