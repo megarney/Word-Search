@@ -68,12 +68,12 @@ public class Word{
         Points.failedAttempt();
         Attempt.failedAttempt();
         if(response.length() != answer.length()){
-            System.out.println("Invalid word length.\nEnter 1 to go to the Market.\n" + scrambled);
+            System.out.println("Invalid word length.\nEnter 1 to go to the Market or 2 to quit.\n" + scrambled);
             lastDisplayed = "Invalid word length.";
             getResponse();
         }
         else{
-            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market.\n" + scrambled);
+            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market or 2 to quit.\n" + scrambled);
             lastDisplayed = SelectWord.checkCorrect(response, answer);
             getResponse();
         }
@@ -176,7 +176,7 @@ public class Word{
         Attempt.attempts();
         Megash.newGame();
         selectDifficulty();
-        System.out.println(Word.getAnswer());
+        //System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
     }
