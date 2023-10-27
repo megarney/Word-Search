@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Word{
-    private static Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
     private static String answer = ""; //keeps track of answer
     private static String addedAnswer = ""; //answer with added letters
     private static String response = "";
@@ -52,6 +52,9 @@ public class Word{
             Market.displayMarket();
             getResponse();
         }
+        else if(response.equals("2")){
+            scan.close();
+        }
         else if(!response.toLowerCase().equals(answer)){
             incorrect();
         }
@@ -60,18 +63,17 @@ public class Word{
         }
     }
 
-    //if response from user is incorrect - takes away points and loses win streak
+    //if response from user is incorrect - takes away points and an attempt
     public static void incorrect() throws IOException{
         Points.failedAttempt();
-        Streak.loseStreak();
         Attempt.failedAttempt();
         if(response.length() != answer.length()){
-            System.out.println("Invalid word length. Enter 1 to go to the Market.");
+            System.out.println("Invalid word length.\nEnter 1 to go to the Market.\n" + scrambled);
             lastDisplayed = "Invalid word length.";
             getResponse();
         }
         else{
-            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market.");
+            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market.\n" + scrambled);
             lastDisplayed = SelectWord.checkCorrect(response, answer);
             getResponse();
         }
@@ -89,6 +91,7 @@ public class Word{
             newGame();
         }
         scan.close();
+        System.exit(0);
     }
 
     //prints letters in random order
@@ -161,10 +164,10 @@ public class Word{
 
     /*
      * 1. Lets the user select the level/word length
-     * 2 & 3. Resets the Market and Points
-     * 4. Lets the user select the difficulty/extra letters
-     * 5. Prints letters in a random order
-     * 6. Gets users input
+     * 2 & 3 & 4. Resets the Market and Points
+     * 5. Lets the user select the difficulty/extra letters
+     * 6. Prints letters in a random order
+     * 7. Gets users input
      */
     public static void newGame() throws IOException{
         selectLevel();
@@ -172,7 +175,7 @@ public class Word{
         Points.points();
         Attempt.attempts();
         selectDifficulty();
-        //System.out.println(Word.getAnswer());
+        System.out.println(Word.getAnswer());
         printLetters();
         getResponse();
     }

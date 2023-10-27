@@ -9,13 +9,13 @@
  */
 
 import java.io.IOException;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Market {
     private static int hintCost; //keeps track of the current cost of a hint
     private static int hintsAvailable; //keeps track of how many hints are available for the game
-    private static Scanner scan = new Scanner(System.in);
-    private static int response;
+    //private static Scanner scan = new Scanner(System.in);
+    private static String response;
 
     //resets hintsUsed
     public static void newGame(){
@@ -71,17 +71,16 @@ public class Market {
 
     //gets the response from user to either buy or return to game
     public static void getResponse() throws IOException{
-        response = scan.nextInt();
-        if(response == 1){
+        response = Word.scan.nextLine();
+        if(response.equals("1")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
             System.out.println(Word.getScrambled() + "\n" + Word.getLastDisplayed());
             Word.getResponse();
         }
-        else if(response == 2){
+        else if(response.equals("2")){
             buy();
         }
-        scan.close();
     }
 
     //method that lets the user buy an item
@@ -89,15 +88,15 @@ public class Market {
         System.out.println("===================");
         System.out.println("Press 1 to buy a Hint");
         System.out.println("Press 2 to buy an Auto-Win");
-        response = scan.nextInt();
-        if(response == 1){
+        response = Word.scan.nextLine();
+        if(response.equals("1")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
             System.out.println(Word.getScrambled());
             hint();
             Word.getResponse();
         }
-        else if(response == 2){
+        else if(response.equals("2")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
             autoWin();
