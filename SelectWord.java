@@ -43,7 +43,7 @@ public class SelectWord {
     //selects a random eight letter word
     public static String SelectEightLetterWord() throws IOException{
         String answer = "";
-        int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
+        int n = (int)Math.floor(Math.random() * (504 - 0 + 1)); //selects random line from five letter word database
         try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\eightLetterWords.txt"))){
             answer = lines.skip(n).findFirst().get(); //returns the word from line n
             if(UsedWords.checkUsed(answer) == true){
@@ -60,7 +60,7 @@ public class SelectWord {
     //selects a random twelve letter word
     public static String SelectTwelveLetterWord() throws IOException{
         String answer = "";
-        int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
+        int n = (int)Math.floor(Math.random() * (71 - 0 + 1)); //selects random line from five letter word database
         try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\twelveLetterWords.txt"))){
             answer = lines.skip(n).findFirst().get(); //returns the word from line n
             if(UsedWords.checkUsed(answer) == true){
