@@ -2,7 +2,7 @@
  * Keeps track of what can be bought with Megash and the cost
  * Things that can be bought: 
  *      -Hints: Max 3 per game, price goes up 5 with each hint within a game
- *      -Auto-Win: Used to keep streak but will not award any points
+ *      -Auto-Win: Used to reveal the word spending 50 cash
  *      -Mini games:
  *          -Sprint: Get as many words in x amount of time as possible for an increased rate of points and Megash
  *          -No Hint Challenge: Get as many words as possible without failing without being able to access the market (ie no hints)
