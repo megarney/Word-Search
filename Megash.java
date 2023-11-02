@@ -3,7 +3,7 @@
  */
 
 public class Megash {
-    private static int totalCash; //keeps track of balance
+    private static int totalCash = 200; //keeps track of balance
     private static int cash; //keeps track of cash for that game
 
     //resets cash
@@ -39,6 +39,15 @@ public class Megash {
         }
         else{
             totalCash -= spend;
+            return true;
+        }
+    }
+
+    public static boolean canSpend(int spend){
+        if(spend > totalCash){
+            return false;
+        }
+        else{
             return true;
         }
     }

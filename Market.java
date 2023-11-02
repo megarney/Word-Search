@@ -38,15 +38,23 @@ public class Market {
     }
     
     //buy a hint only if the user has enough Megash and has not used the max number of hints
-    public static void hint(){
+    public static void hint() throws IOException{
         if(hintsAvailable == 0){
             System.out.println("You have already used the max number of hints for this game");
+            System.out.println("===================");
+            System.out.println("Returned to game mode.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
         }
         else if(Megash.spendCash(hintCost)){
+            System.out.println("===================");
+            System.out.println("Returned to game mode.");
+            System.out.println(Word.getScrambled() + "\nHint: ");
             Hint.hint();
+            Hint.setWordle();
             Hint.giveHint();
             hintsAvailable--;
             hintCost += 5;
+            Word.getResponse();
         }
         else{
             System.out.println("You do not have enough Megash to buy a hint.");
@@ -56,7 +64,10 @@ public class Market {
     //reveal the answer with 50 Megash
     public static void autoWin(){
         if(Megash.spendCash(50)){
-            System.out.println(Word.getAnswer());
+            System.out.println("===================");
+            System.out.println("Returned to game mode.");
+            System.out.println("Answer: " + Word.getAnswer());
+            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
         }
         else{
             System.out.println("You do not have enough Megash to buy an Auto-Win.");
@@ -91,26 +102,53 @@ public class Market {
     //method that lets the user buy an item
     public static void buy() throws IOException{
         System.out.println("===================");
-        System.out.println("Press 1 to buy a Hint");
-        System.out.println("Press 2 to buy an Auto-Win");
+        boolean hint = hintBuy();
+        boolean autoWin = autoWinBuy();
+        System.out.println("Press 3 to return to the Market or 4 to return to the game.");
         response = Word.scan.nextLine();
-        if(response.equals("1")){
-            System.out.println("===================");
-            System.out.println("Returned to game mode.");
-            System.out.println(Word.getScrambled());
+        if(response.equals("1") && hint){
             hint();
             Word.getResponse();
         }
-        else if(response.equals("2")){
+        else if(response.equals("2") && autoWin){
+            autoWin();
+            Word.getResponse();
+        }
+        else if(response.equals("3")){
+            displayMarket();
+        }
+        else if(response.equals("4")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            autoWin();
+            System.out.println(Word.getScrambled() + "\n" + Word.getLastDisplayed());
             Word.getResponse();
         }
         else{
             System.out.println("===================");
             System.out.println("Response invalid. Please try again.");
             buy();
+        }
+    }
+
+    public static boolean hintBuy() throws IOException{
+        if(Megash.canSpend(hintCost)){
+            System.out.println("Press 1 to buy a Hint for $" + hintCost);
+            return true;
+        }
+        else{
+            System.out.println("You need $" + (hintCost-Megash.getCash()) + " more to buy a hint");
+            return false;
+        }
+    }
+
+    public static boolean autoWinBuy() throws IOException{
+        if(Megash.canSpend(50)){
+            System.out.println("Press 2 to buy an Auto-Win for $50");
+            return true;
+        }
+        else{
+            System.out.println("You need $" + (50-Megash.getCash()) + " more to buy an Auto-Win");
+            return false;
         }
     }
 }

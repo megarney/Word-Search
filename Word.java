@@ -68,12 +68,12 @@ public class Word{
         Points.failedAttempt();
         Attempt.failedAttempt();
         if(response.length() != answer.length()){
-            System.out.println("Invalid word length.\nEnter 1 to go to the Market or 2 to quit.\n" + scrambled);
+            System.out.println("Invalid word length.\nEnter 1 to go to the Market, 2 to quit, or type guess below.\n" + scrambled);
             lastDisplayed = "Invalid word length.";
             getResponse();
         }
         else{
-            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market or 2 to quit.\n" + scrambled);
+            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market, 2 to quit, or type guess below.\n" + scrambled);
             lastDisplayed = SelectWord.checkCorrect(response, answer);
             getResponse();
         }
@@ -96,6 +96,7 @@ public class Word{
 
     //prints letters in random order
     public static void printLetters(){
+        System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
         scrambled = "";
         for(int i = 0; i < addedAnswer.length(); i++){
             letters.add(addedAnswer.substring(i, i+1));

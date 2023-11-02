@@ -19,6 +19,15 @@ public class Hint {
         used = 0;
     }
 
+    public static void setWordle(){
+        if(wordle == null){
+            wordle = "";
+            for(int i = 1; i <= answer.length(); i++){
+                wordle += "_";
+            }
+        }
+    }
+
     //returns whether or not user has had their first hint
     public static boolean getHasFirstHint(){
         return hasFirstHint;
