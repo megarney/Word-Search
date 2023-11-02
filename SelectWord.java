@@ -37,6 +37,7 @@ public class SelectWord {
         catch(IOException e){
             System.out.println(e);
         }
+        Word.newGame();
         return "nv"; //not valid
     }
 
@@ -54,6 +55,7 @@ public class SelectWord {
         catch(IOException e){
             System.out.println(e);
         }
+        Word.newGame();
         return "nv"; //not valid
     }
 
@@ -71,6 +73,7 @@ public class SelectWord {
         catch(IOException e){
             System.out.println(e);
         }
+        Word.newGame();
         return "nv"; //not valid
     }
 
