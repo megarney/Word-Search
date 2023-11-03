@@ -3,7 +3,7 @@
  */
 
 public class Megash {
-    private static int totalCash = 200; //keeps track of balance
+    private static int totalCash; //keeps track of balance
     private static int cash; //keeps track of cash for that game
 
     //resets cash
