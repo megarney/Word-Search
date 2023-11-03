@@ -88,7 +88,7 @@ public class SelectWord {
         int numAdded = 0;
         Random r;
         char c;
-        numAdded = difficulty + 1;
+        numAdded = difficulty - 1;
         //gets random letters to be added
         for(int i = 1; i <= numAdded; i++){
             r = new Random();
