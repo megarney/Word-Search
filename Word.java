@@ -48,33 +48,40 @@ public class Word{
     //gets response from user
     public static void getResponse() throws IOException{
         response = scan.nextLine();
+        //Market:
         if(response.equals("1")){
             Market.displayMarket();
             getResponse();
         }
+        //Quit:
         else if(response.equals("2")){
             scan.close();
         }
+        //Help Menu:
         else if(response.equals("3")){
             Help.displayHelp();
         }
+        //Incorrect Answer:
         else if(!response.toLowerCase().equals(answer)){
             incorrect();
         }
+        //Correct Answer:
         else{
             correct();
         }
     }
 
-    //if response from user is incorrect - takes away points and an attempt
+    //if response from user is incorrect
     public static void incorrect() throws IOException{
-        Points.failedAttempt();
-        Attempt.failedAttempt();
+        Points.failedAttempt(); //takes away 10 points
+        Attempt.failedAttempt(); //takes away an attempt
+        //if the input was invalid
         if(response.length() != answer.length()){
             System.out.println("Invalid word length.\nEnter 1 to go to the Market, 2 to quit, 3 for help, or type guess below.\n" + scrambled);
             lastDisplayed = "Invalid word length.";
             getResponse();
         }
+        //if the input was valid but incorrect - displays wordle
         else{
             System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market, 2 to quit, 3 for help, or type guess below.\n" + scrambled);
             lastDisplayed = SelectWord.checkCorrect(response, answer);
@@ -82,37 +89,51 @@ public class Word{
         }
     }
 
-    //if response from user is correct - increases streak and calculates total cash
+    //if response from user is correct
     public static void correct() throws IOException{
-        Streak.increaseStreak();
-        Megash.calculateCash();
+        Streak.increaseStreak(); //increases streak
+        Megash.calculateCash(); //calculates cash
         System.out.println("===================");
         System.out.println("Correct!\nPoints Earned: " + Points.getPoints() + "\nMegash Earned: $" + Megash.getCash() + "\nMegash Total: $" + Megash.getTotalCash() + "\nWould you like to start a new game? 1 for yes, 2 for no");
         response = scan.nextLine();
+        //new game
         if(response.equals("1")){
             System.out.println("===================");
             newGame();
         }
-        scan.close();
-        System.exit(0);
+        //quit
+        else if(response.equals("2")){
+            scan.close();
+            System.exit(0);
+        }
+        //invalid response
+        else{
+            System.out.println("Invalid response. Please try again.");
+            correct();
+        }
+        
     }
 
     //prints letters in random order
     public static void printLetters(){
         System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, or type guess below.");
         scrambled = "";
+        //adds all of the letters from the answer + any extra letters to an ArrayList
         for(int i = 0; i < addedAnswer.length(); i++){
             letters.add(addedAnswer.substring(i, i+1));
         }
+        //Randomly selects a letter from the ArrayList, adds them to the scrambled string, then removes it from the ArrayList
         int rand;
         for(int i = 0; i < addedAnswer.length(); i++){
             rand = (int)Math.floor(Math.random() * (letters.size()));
             scrambled += letters.get(rand);
             letters.remove(rand);
         }
+        //if the scrambled word is not the same as the answer, prints out the scrambled string
         if(!scrambled.equals(answer)){
             System.out.println(scrambled);
         }
+        //if it is the same as the answer, restarts
         else{
             printLetters();
         }
@@ -127,14 +148,17 @@ public class Word{
     public static void selectDifficulty() throws IOException{
         System.out.println("Select Difficulty: 1 for easy, 2 for medium, 3 for hard.");
         response = scan.nextLine();
+        //difficulty 2 - adds one extra letter
         if(response.equals("2")){
             difficulty = 2;
             addedAnswer = SelectWord.addLetters();
         }
+        //difficult 3 - adds two extra letters
         else if(response.equals("3")){
             difficulty = 3;
             addedAnswer = SelectWord.addLetters();
         }
+        //difficulty 1 - adds no extra letters
         else{
             addedAnswer = answer.toLowerCase();
             difficulty = 1;
@@ -152,14 +176,17 @@ public class Word{
     public static void selectLevel() throws IOException{
         System.out.println("Select Level: 1 for a five letter word, 2 for an eight letter word, 3 for a twelve letter word.");
         response = scan.nextLine();
+        //level 2 - eight letter word
         if(response.equals("2")){
             answer = SelectWord.SelectEightLetterWord();
             level = 2;
         }
+        //level 3 - twelve letter word
         else if(response.equals("3")){
             answer = SelectWord.SelectTwelveLetterWord();
             level = 3;
         }
+        //level 1 - five letter word - default
         else{
             answer = SelectWord.SelectFiveLetterWord();
             level = 1;

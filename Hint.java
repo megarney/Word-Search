@@ -8,14 +8,14 @@ public class Hint {
     private static String output; //keeps track of what the hint with print
     private static String wordle; //keeps track of what letters the user already has in the right spot
     private static String answer; //keeps track of the answer
-    private static boolean hasFirstHint; //tells whether the user has had their first hint
+    //private static boolean hasFirstHint;
     
     //resets the hint when the user first asks for a hint
     public static void hint(){
-        wordle = SelectWord.getOutput();
-        answer = Word.getAnswer();
+        wordle = SelectWord.getOutput(); //gets the current wordle from SelectWord
+        answer = Word.getAnswer(); //gets the answer from Word
         output = "";
-        hasFirstHint = false;
+        //hasFirstHint = false;
         used = 0;
     }
 
@@ -29,14 +29,16 @@ public class Hint {
     }
 
     //returns whether or not user has had their first hint
+    /* 
     public static boolean getHasFirstHint(){
         return hasFirstHint;
     }
+    */
 
     //gives hint
     public static void giveHint(){
-        hasFirstHint = true;
-        boolean hasHint = false;
+        //hasFirstHint = true;
+        boolean hasHint = false; //shows whether or not the user has already recieved a hint
         //first hint and entered invalid word length
         if(wordle.equals("")&&used==0){
             output += answer.charAt(0);
@@ -47,9 +49,9 @@ public class Hint {
             used++;
             available--;
             System.out.println(output);
-            Points.usedHint();
+            Points.usedHint(); //subtracts points for using a hint
         }
-        //first hint after an output
+        //first hint after a wordle has been given
         else if(!wordle.equals("")&&used==0){
             for(int i = 0; i < wordle.length(); i++){
                 if(wordle.charAt(i)=='_' && hasHint == false){
@@ -63,7 +65,7 @@ public class Hint {
             used++;
             available--;
             System.out.println(output);
-            Points.usedHint();
+            Points.usedHint(); //subtracts points for using a hint
         }
         //hints after the first
         else if(used>=1 && available!=0){
@@ -81,7 +83,7 @@ public class Hint {
             available--;
             output = newOutput;
             System.out.println(output);
-            Points.usedHint();
+            Points.usedHint(); //subtracts points for using a hint
         }
         //no more hints available for that game
         else if(available==0){

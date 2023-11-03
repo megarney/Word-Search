@@ -55,7 +55,7 @@ public class SelectWord {
         catch(IOException e){
             System.out.println(e);
         }
-        Word.newGame();
+        Word.newGame(); //starts a new game if can't find in database
         return "nv"; //not valid
     }
 
@@ -73,27 +73,9 @@ public class SelectWord {
         catch(IOException e){
             System.out.println(e);
         }
-        Word.newGame();
+        Word.newGame(); //starts a new game if can't find in database
         return "nv"; //not valid
     }
-
-    /* 
-    //adds letters based on difficulty
-    public static String addLetters(int difficulty, String answer){
-        String added = "";
-        String addedAnswer = answer;
-        if(answer.length()==5 && difficulty==2){
-            Random r = new Random();
-            char c = (char)(r.nextInt(26) + 'a');
-            added += c;
-        }
-        if (added.equals("r") || added.equals("d") || added.equals("y") || added.equals("s")){
-                addLetters(difficulty, answer);
-        }
-        addedAnswer += added.toLowerCase();
-        return addedAnswer;
-    }
-    */
 
     /*
      * Adds 1 letter for difficulty 2
@@ -106,22 +88,18 @@ public class SelectWord {
         int numAdded = 0;
         Random r;
         char c;
-        if(difficulty==2){
-            numAdded = 1;
-        }
-        else if(difficulty==3){
-            numAdded = 2;
-        }
+        numAdded = difficulty + 1;
+        //gets random letters to be added
         for(int i = 1; i <= numAdded; i++){
             r = new Random();
             c = (char)(r.nextInt(26) + 'a');
             if(c == 'r' || c == 'd' || c == 'y' || c == 's'){
-                addLetters();
+                addLetters(); //if one of the added letters is r, d, y, or s, will restart
             }
             added += c;
         }
         addedAnswer += added.toLowerCase();
-        return addedAnswer;
+        return addedAnswer; //returns the answer with 1-2 extra letters at the end
     }
 
     //if guess is wrong, checks which letters are in the right spot

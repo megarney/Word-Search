@@ -5,7 +5,6 @@
  */
 
 import java.io.IOException;
-//import java.util.Scanner;
 
 public class Attempt {
     private static int attempts; //keeps track of the number of attempts
@@ -19,12 +18,12 @@ public class Attempt {
 
     //loses an attempt
     public static void failedAttempt() throws IOException{
-        attempts--;
-        if(attempts == 0){
+        attempts--; //subtracts from total attempt
+        if(attempts == 0){ //if there are no more attempts remaining - fail
             fail();
         }
         else{
-            System.out.println("Attempts remaining: " + attempts);
+            System.out.println("Attempts remaining: " + attempts); //displays attempts remaining
         }
     }
 
@@ -32,20 +31,20 @@ public class Attempt {
     public static void fail() throws IOException{
         System.out.println("No attempts remaining.\nEnter 1 to start a new game or enter 2 to spend $50 Megash for one more attempt.");
         response = Word.scan.nextLine();
-        if(response.equals("2")){
-            if(Megash.spendCash(50)){
+        if(response.equals("2")){ //if the user selects to spend $50 for a new attempt
+            if(Megash.spendCash(50)){ //if they have a sufficient amount to pay for another attempt, they get one more try
                 attempts++;
                 System.out.println("Attempts remaining: 1\n" + Word.getScrambled() + "\n" + Word.getLastDisplayed());
                 Word.getResponse();
             }
-            else{
+            else{ //if they can not afford it, they lose their streak and a new game starts
                 System.out.println("Insufficient funds.");
                 System.out.println("===================");
                 Streak.loseStreak();
                 Word.newGame();
             }
         }
-        else{
+        else{ //if the user does not try to pay for another attempt, loses streak and a new game starts
             System.out.println("===================");
             Streak.loseStreak();
             Word.newGame();

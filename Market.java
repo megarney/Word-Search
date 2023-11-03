@@ -24,7 +24,8 @@ public class Market {
      * 12 letters - 4 hints
      */
     public static void newGame(){
-        hintCost = 20;
+        hintCost = 20; //sets the hint cost to the base 20
+        //sets the number of hints available based on the level/word length
         int wordLength = Word.getAnswer().length();
         if(wordLength == 5){
             hintsAvailable = 2;
@@ -130,6 +131,7 @@ public class Market {
         }
     }
 
+    //user tries to buy a hint - fail or success based on if they can afford it
     public static boolean hintBuy() throws IOException{
         if(Megash.canSpend(hintCost)){
             System.out.println("Press 1 to buy a Hint for $" + hintCost);
@@ -141,6 +143,7 @@ public class Market {
         }
     }
 
+    //user tries to buy an auto-win - fail or success based on if they can afford it
     public static boolean autoWinBuy() throws IOException{
         if(Megash.canSpend(50)){
             System.out.println("Press 2 to buy an Auto-Win for $50");

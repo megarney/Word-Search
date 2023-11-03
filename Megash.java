@@ -43,6 +43,7 @@ public class Megash {
         }
     }
 
+    //returns a boolean value based on whether or not the user can spend a specific amount
     public static boolean canSpend(int spend){
         if(spend > totalCash){
             return false;
