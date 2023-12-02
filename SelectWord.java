@@ -23,6 +23,10 @@ public class SelectWord {
         return output;
     }
 
+    public static void setOutput(String putout){
+        output = putout;
+    }
+
     //selects a random five letter word
     public static String SelectFiveLetterWord() throws IOException{
         String answer = "";

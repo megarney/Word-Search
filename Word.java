@@ -203,6 +203,8 @@ public class Word{
     public static void newGame() throws IOException{
         selectLevel();
         selectDifficulty();
+        lastDisplayed = null;
+        SelectWord.setOutput("");
         Market.newGame();
         Points.points();
         Attempt.attempts();

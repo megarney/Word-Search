@@ -121,7 +121,10 @@ public class Market {
         else if(response.equals("4")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println(Word.getScrambled() + "\n" + Word.getLastDisplayed());
+            System.out.println(Word.getScrambled());
+            if(Word.getLastDisplayed() != null){
+                System.out.println(Word.getLastDisplayed());
+            }
             Word.getResponse();
         }
         else{
@@ -138,7 +141,7 @@ public class Market {
             return true;
         }
         else{
-            System.out.println("You need $" + (hintCost-Megash.getCash()) + " more to buy a hint");
+            System.out.println("You need $" + (hintCost-Megash.getTotalCash()) + " more to buy a hint");
             return false;
         }
     }
@@ -150,7 +153,7 @@ public class Market {
             return true;
         }
         else{
-            System.out.println("You need $" + (50-Megash.getCash()) + " more to buy an Auto-Win");
+            System.out.println("You need $" + (50-Megash.getTotalCash()) + " more to buy an Auto-Win");
             return false;
         }
     }
