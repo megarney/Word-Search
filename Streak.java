@@ -10,6 +10,10 @@ public class Streak {
         streak = 0;
     }
 
+    public static int getStreak(){
+        return streak;
+    }
+
     //when a game is won, streak is increased
     public static void increaseStreak(){
         streak++;

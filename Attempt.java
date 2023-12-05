@@ -40,12 +40,14 @@ public class Attempt {
             else{ //if they can not afford it, they lose their streak and a new game starts
                 System.out.println("Insufficient funds.");
                 System.out.println("===================");
+                System.out.println("The correct answer was: " + Word.getAnswer());
                 Streak.loseStreak();
                 Word.newGame();
             }
         }
         else{ //if the user does not try to pay for another attempt, loses streak and a new game starts
             System.out.println("===================");
+            System.out.println("The correct answer was: " + Word.getAnswer());
             Streak.loseStreak();
             Word.newGame();
         }

@@ -63,7 +63,10 @@ public class Help {
         System.out.println("Attempts: The number of attempts you get to guess the answer is based on level. \nFor level 1, you get 5 guesses; \nlevel 2, you get 8 guesses; \nand level 3, you get 12 guesses. \nIf you run out of guesses, you will have the opportunity to spend $50 Megash to get one more attempt.");
         System.out.println("===================");
         System.out.println("Returned to game mode.");
-        System.out.println(Word.getScrambled()); //displays the scrambled word
+        System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
+        if(Word.getScrambled() != null){
+            System.out.println(Word.getScrambled()); //displays the scrambled word
+        }
         if(Word.getLastDisplayed() != null && !Word.getLastDisplayed().isEmpty()){ //if there was a previous attempt, displays the wordle
             System.out.println(Word.getLastDisplayed());
         }

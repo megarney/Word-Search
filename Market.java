@@ -44,12 +44,12 @@ public class Market {
             System.out.println("You have already used the max number of hints for this game");
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
         }
         else if(Megash.spendCash(hintCost)){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
             System.out.println(Word.getScrambled() + "\nHint: ");
             Hint.hint();
             Hint.setWordle();
@@ -69,7 +69,7 @@ public class Market {
             System.out.println("===================");
             System.out.println("Returned to game mode.");
             System.out.println("Answer: " + Word.getAnswer());
-            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
         }
         else{
             System.out.println("You do not have enough Megash to buy an Auto-Win.");
@@ -93,7 +93,7 @@ public class Market {
         if(response.equals("1")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
             System.out.println(Word.getScrambled());
             if(Word.getLastDisplayed() != null){
                 System.out.println(Word.getLastDisplayed());
@@ -113,10 +113,12 @@ public class Market {
         System.out.println("Press 3 to return to the Market or 4 to return to the game.");
         response = Word.scan.nextLine();
         if(response.equals("1") && hint){
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
             hint();
             Word.getResponse();
         }
         else if(response.equals("2") && autoWin){
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
             autoWin();
             Word.getResponse();
         }
@@ -126,7 +128,7 @@ public class Market {
         else if(response.equals("4")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
             System.out.println(Word.getScrambled());
             if(Word.getLastDisplayed() != null){
                 System.out.println(Word.getLastDisplayed());

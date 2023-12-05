@@ -61,6 +61,11 @@ public class Word{
         else if(response.equals("3")){
             Help.displayHelp();
         }
+        //give up:
+        else if(response.equals("4")){
+            System.out.println("===================\nNew Game:");
+            newGame();
+        }
         //Incorrect Answer:
         else if(!response.toLowerCase().equals(answer)){
             incorrect();
@@ -77,13 +82,13 @@ public class Word{
         Attempt.failedAttempt(); //takes away an attempt
         //if the input was invalid
         if(response.length() != answer.length()){
-            System.out.println("Invalid word length.\nEnter 1 to go to the Market, 2 to quit, 3 for help, or type guess below.\n" + scrambled);
+            System.out.println("Invalid word length.\nEnter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.\n" + scrambled);
             lastDisplayed = "Invalid word length.";
             getResponse();
         }
         //if the input was valid but incorrect - displays wordle
         else{
-            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market, 2 to quit, 3 for help, or type guess below.\n" + scrambled);
+            System.out.println("Incorrect, letters in right spot: " + SelectWord.checkCorrect(response, answer)+ "\nEnter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.\n" + scrambled);
             lastDisplayed = SelectWord.checkCorrect(response, answer);
             getResponse();
         }
@@ -94,7 +99,7 @@ public class Word{
         Streak.increaseStreak(); //increases streak
         Megash.calculateCash(); //calculates cash
         System.out.println("===================");
-        System.out.println("Correct!\nPoints Earned: " + Points.getPoints() + "\nMegash Earned: $" + Megash.getCash() + "\nMegash Total: $" + Megash.getTotalCash() + "\nWould you like to start a new game? 1 for yes, 2 for no");
+        System.out.println("Correct!\nStreak: " + Streak.getStreak() + "\nPoints Earned: " + Points.getPoints() + "\nMegash Earned: $" + Megash.getCash() + "\nMegash Total: $" + Megash.getTotalCash() + "\nWould you like to start a new game? 1 for yes, 2 for no");
         response = scan.nextLine();
         //new game
         if(response.equals("1")){
@@ -116,7 +121,7 @@ public class Word{
 
     //prints letters in random order
     public static void printLetters(){
-        System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, or type guess below.");
+        System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
         scrambled = "";
         //adds all of the letters from the answer + any extra letters to an ArrayList
         for(int i = 0; i < addedAnswer.length(); i++){
