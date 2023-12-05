@@ -48,6 +48,7 @@ public class Hint {
             }
             used++;
             available--;
+            SelectWord.setOutput(output);
             System.out.println(output);
             Points.usedHint(); //subtracts points for using a hint
         }
@@ -64,6 +65,7 @@ public class Hint {
             }
             used++;
             available--;
+            SelectWord.setOutput(output);
             System.out.println(output);
             Points.usedHint(); //subtracts points for using a hint
         }
@@ -82,6 +84,7 @@ public class Hint {
             used++;
             available--;
             output = newOutput;
+            SelectWord.setOutput(output);
             System.out.println(output);
             Points.usedHint(); //subtracts points for using a hint
         }

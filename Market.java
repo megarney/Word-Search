@@ -49,6 +49,7 @@ public class Market {
         else if(Megash.spendCash(hintCost)){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
             System.out.println(Word.getScrambled() + "\nHint: ");
             Hint.hint();
             Hint.setWordle();
@@ -92,7 +93,11 @@ public class Market {
         if(response.equals("1")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
-            System.out.println(Word.getScrambled() + "\n" + Word.getLastDisplayed());
+            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
+            System.out.println(Word.getScrambled());
+            if(Word.getLastDisplayed() != null){
+                System.out.println(Word.getLastDisplayed());
+            }
             Word.getResponse();
         }
         else if(response.equals("2")){
@@ -121,6 +126,7 @@ public class Market {
         else if(response.equals("4")){
             System.out.println("===================");
             System.out.println("Returned to game mode.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, or type guess below.");
             System.out.println(Word.getScrambled());
             if(Word.getLastDisplayed() != null){
                 System.out.println(Word.getLastDisplayed());

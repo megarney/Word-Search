@@ -16,6 +16,10 @@ public class Megash {
         return totalCash;
     }
 
+    public static void setTotalCash(int startTotal){
+        totalCash = startTotal;
+    }
+
     //returns game's cash
     public static int getCash(){
         return cash;
