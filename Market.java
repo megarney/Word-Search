@@ -12,7 +12,7 @@ import java.io.IOException;
 //import java.util.Scanner;
 
 public class Market {
-    private static int hintCost; //keeps track of the current cost of a hint
+    private static int hintCost = 20; //keeps track of the current cost of a hint
     private static int hintsAvailable; //keeps track of how many hints are available for the game
     //private static Scanner scan = new Scanner(System.in);
     private static String response;
@@ -94,7 +94,9 @@ public class Market {
             System.out.println("===================");
             System.out.println("Returned to game mode.");
             System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
-            System.out.println(Word.getScrambled());
+            if(Word.getScrambled() != null){
+                System.out.println(Word.getScrambled());
+            }
             if(Word.getLastDisplayed() != null){
                 System.out.println(Word.getLastDisplayed());
             }
@@ -129,7 +131,9 @@ public class Market {
             System.out.println("===================");
             System.out.println("Returned to game mode.");
             System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
-            System.out.println(Word.getScrambled());
+            if(Word.getScrambled() != null){
+                System.out.println(Word.getScrambled());
+            }
             if(Word.getLastDisplayed() != null){
                 System.out.println(Word.getLastDisplayed());
             }
