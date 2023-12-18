@@ -8,6 +8,27 @@ import java.util.HashMap;
 
 public class UsedWords {
     private static HashMap<String, String> usedWords = new HashMap<String, String>();
+    private static int fiveAvailable = 686;
+    private static int eightAvailable = 504;
+    private static int twelveAvailable = 71;
+
+    public static int getFiveAvailable(){
+        return fiveAvailable;
+    }
+
+    public static int getEightAvailable(){
+        return eightAvailable;
+    }
+
+    public static int getTwelveAvailable(){
+        return twelveAvailable;
+    }
+
+    public static void setDemo(){
+        fiveAvailable = 5;
+        eightAvailable = 5;
+        twelveAvailable = 5;
+    }
 
     //check if word has already been used
     public static boolean checkUsed(String answer){

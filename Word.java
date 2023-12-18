@@ -66,6 +66,12 @@ public class Word{
             System.out.println("===================\nNew Game:");
             newGame();
         }
+        else if(response.equals("demo")){
+            SelectWord.setDemoTrue();
+            UsedWords.setDemo();
+            System.out.println("Demo active\nEnter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round");
+            getResponse();
+        }
         //Incorrect Answer:
         else if(!response.toLowerCase().equals(answer)){
             incorrect();
@@ -196,6 +202,11 @@ public class Word{
             answer = SelectWord.SelectFiveLetterWord();
             level = 1;
         }
+    }
+
+    public static void noWordsAvailable() throws IOException{
+        System.out.println("There are no words left for the level you are trying to play. Please try again with a different level.");
+        newGame();
     }
 
     /*

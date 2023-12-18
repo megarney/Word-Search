@@ -17,6 +17,7 @@ public class SelectWord {
      * ex: answer is bingo, guess is bnigo, output is b__go
      */
     private static String output;
+    private static boolean demo = false;
 
     //returns output
     public static String getOutput(){
@@ -27,22 +28,41 @@ public class SelectWord {
         output = putout;
     }
 
+    public static void setDemoTrue(){
+        demo = true;
+    }
+
     //selects a random five letter word
     public static String SelectFiveLetterWord() throws IOException{
         String answer = "";
-        int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
-        try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\fiveLetterWords.txt"))){
-            answer = lines.skip(n).findFirst().get(); //returns the word from line n
-            if(UsedWords.checkUsed(answer) == true){
-                return SelectFiveLetterWord();
+        if(UsedWords.getFiveAvailable() == 0){
+            Word.noWordsAvailable();
+        }
+        else if(demo == false){ //if not a demo
+            int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
+            try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\fiveLetterWords.txt"))){
+                answer = lines.skip(n).findFirst().get(); //returns the word from line n
+                if(UsedWords.checkUsed(answer) == true){
+                    return SelectFiveLetterWord();
+                }
             }
-            return answer;
+            catch(IOException e){
+                System.out.println(e);
+            }
         }
-        catch(IOException e){
-            System.out.println(e);
+        else{ //if it is a demo
+            int n = (int)Math.floor(Math.random() * (5 - 0 + 1)); //selects random line from five letter word database
+            try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoFiveLetters.txt"))){
+                answer = lines.skip(n).findFirst().get(); //returns the word from line n
+                if(UsedWords.checkUsed(answer) == true){
+                    return SelectFiveLetterWord();
+                }
+            }
+            catch(IOException e){
+                System.out.println(e);
+            }
         }
-        Word.newGame();
-        return "nv"; //not valid
+        return answer;
     }
 
     //selects a random eight letter word
