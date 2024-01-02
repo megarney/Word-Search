@@ -16,12 +16,24 @@ public class UsedWords {
         return fiveAvailable;
     }
 
+    public static void fiveUsed(){
+        fiveAvailable--;
+    }
+
     public static int getEightAvailable(){
         return eightAvailable;
     }
 
+    public static void eightUsed(){
+        eightAvailable--;
+    }
+
     public static int getTwelveAvailable(){
         return twelveAvailable;
+    }
+
+    public static void twelveUsed(){
+        twelveAvailable--;
     }
 
     public static void setDemo(){

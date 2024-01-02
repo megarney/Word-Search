@@ -39,7 +39,7 @@ public class SelectWord {
             Word.noWordsAvailable();
         }
         else if(demo == false){ //if not a demo
-            int n = (int)Math.floor(Math.random() * (686 - 0 + 1)); //selects random line from five letter word database
+            int n = (int)Math.floor(Math.random() * (686)); //selects random line from five letter word database
             try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\fiveLetterWords.txt"))){
                 answer = lines.skip(n).findFirst().get(); //returns the word from line n
                 if(UsedWords.checkUsed(answer) == true){
@@ -49,9 +49,11 @@ public class SelectWord {
             catch(IOException e){
                 System.out.println(e);
             }
+            UsedWords.fiveUsed();
         }
         else{ //if it is a demo
-            int n = (int)Math.floor(Math.random() * (5 - 0 + 1)); //selects random line from five letter word database
+            int n = (int)Math.floor(Math.random() * (5)); //selects random line from five letter word database
+            System.out.println(n);
             try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoFiveLetters.txt"))){
                 answer = lines.skip(n).findFirst().get(); //returns the word from line n
                 if(UsedWords.checkUsed(answer) == true){
@@ -61,6 +63,7 @@ public class SelectWord {
             catch(IOException e){
                 System.out.println(e);
             }
+            UsedWords.fiveUsed();
         }
         return answer;
     }
@@ -68,37 +71,74 @@ public class SelectWord {
     //selects a random eight letter word
     public static String SelectEightLetterWord() throws IOException{
         String answer = "";
-        int n = (int)Math.floor(Math.random() * (504 - 0 + 1)); //selects random line from five letter word database
-        try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\eightLetterWords.txt"))){
-            answer = lines.skip(n).findFirst().get(); //returns the word from line n
-            if(UsedWords.checkUsed(answer) == true){
-                return SelectEightLetterWord();
+        if(UsedWords.getEightAvailable() == 0){
+            Word.noWordsAvailable();
+        }
+        else if(demo == false){
+            int n = (int)Math.floor(Math.random() * (504)); 
+            try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\eightLetterWords.txt"))){
+                answer = lines.skip(n).findFirst().get(); //returns the word from line n
+                if(UsedWords.checkUsed(answer) == true){
+                    return SelectEightLetterWord();
+                }
+                return answer;
             }
-            return answer;
+            catch(IOException e){
+                System.out.println(e);
+            }
+            UsedWords.eightUsed();
         }
-        catch(IOException e){
-            System.out.println(e);
+        else{ //if it is a demo
+            int n = (int)Math.floor(Math.random() * (5)); 
+            System.out.println(n);
+            try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoEightLetters.txt"))){
+                answer = lines.skip(n).findFirst().get(); //returns the word from line n
+                if(UsedWords.checkUsed(answer) == true){
+                    return SelectEightLetterWord();
+                }
+            }
+            catch(IOException e){
+                System.out.println(e);
+            }
+            UsedWords.eightUsed();
         }
-        Word.newGame(); //starts a new game if can't find in database
-        return "nv"; //not valid
+        return answer;
     }
 
     //selects a random twelve letter word
     public static String SelectTwelveLetterWord() throws IOException{
         String answer = "";
-        int n = (int)Math.floor(Math.random() * (71 - 0 + 1)); //selects random line from five letter word database
-        try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\twelveLetterWords.txt"))){
-            answer = lines.skip(n).findFirst().get(); //returns the word from line n
-            if(UsedWords.checkUsed(answer) == true){
-                return SelectTwelveLetterWord();
+        if(UsedWords.getTwelveAvailable() == 0){
+            Word.noWordsAvailable();
+        }
+        else if(demo == false){
+            int n = (int)Math.floor(Math.random() * (71)); //selects random line from five letter word database
+            try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\twelveLetterWords.txt"))){
+                answer = lines.skip(n).findFirst().get(); //returns the word from line n
+                if(UsedWords.checkUsed(answer) == true){
+                    return SelectTwelveLetterWord();
+                }
+                return answer;
             }
-            return answer;
+            catch(IOException e){
+                System.out.println(e);
+            }
         }
-        catch(IOException e){
-            System.out.println(e);
+        else{
+            int n = (int)Math.floor(Math.random() * (5)); 
+            System.out.println(n);
+            try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoTwelveLetters.txt"))){
+                answer = lines.skip(n).findFirst().get(); //returns the word from line n
+                if(UsedWords.checkUsed(answer) == true){
+                    return SelectTwelveLetterWord();
+                }
+            }
+            catch(IOException e){
+                System.out.println(e);
+            }
+            UsedWords.twelveUsed();
         }
-        Word.newGame(); //starts a new game if can't find in database
-        return "nv"; //not valid
+        return answer;
     }
 
     /*

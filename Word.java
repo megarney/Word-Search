@@ -19,6 +19,7 @@ public class Word{
     private static String scrambled; //keeps track of the original scrambled word - used for Market
     private static int difficulty; //keeps track of the difficulty - used to calculate points
     private static int level; //keeps track of the level - used to calculate points
+    private static boolean ingame = false;
 
     //gets answer
     public static String getAnswer(){
@@ -69,7 +70,13 @@ public class Word{
         else if(response.equals("demo")){
             SelectWord.setDemoTrue();
             UsedWords.setDemo();
+            Megash.setTotalCash(50);
             System.out.println("Demo active\nEnter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round");
+            getResponse();
+        }
+        else if(ingame == false){
+            System.out.println("Response invalid. Please try again.");
+            System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, or 4 to start a new round.");
             getResponse();
         }
         //Incorrect Answer:
@@ -127,6 +134,7 @@ public class Word{
 
     //prints letters in random order
     public static void printLetters(){
+        System.out.println("===================");
         System.out.println("Enter 1 to go to the Market, 2 to quit, 3 for help, 4 to start a new round, or type guess below.");
         scrambled = "";
         //adds all of the letters from the answer + any extra letters to an ArrayList
@@ -159,8 +167,13 @@ public class Word{
     public static void selectDifficulty() throws IOException{
         System.out.println("Select Difficulty: 1 for easy, 2 for medium, 3 for hard.");
         response = scan.nextLine();
+        //difficulty 1 - adds no extra letters
+        if(response.equals("1")){
+            addedAnswer = answer.toLowerCase();
+            difficulty = 1;
+        }
         //difficulty 2 - adds one extra letter
-        if(response.equals("2")){
+        else if(response.equals("2")){
             difficulty = 2;
             addedAnswer = SelectWord.addLetters();
         }
@@ -169,12 +182,11 @@ public class Word{
             difficulty = 3;
             addedAnswer = SelectWord.addLetters();
         }
-        //difficulty 1 - adds no extra letters
+        //invalid response
         else{
-            addedAnswer = answer.toLowerCase();
-            difficulty = 1;
+            System.out.println("Response invalid. Please try again.");
+            selectDifficulty();
         }
-        System.out.println("===================");
     }
 
     /*
@@ -187,8 +199,13 @@ public class Word{
     public static void selectLevel() throws IOException{
         System.out.println("Select Level: 1 for a five letter word, 2 for an eight letter word, 3 for a twelve letter word.");
         response = scan.nextLine();
+        //level 1 - five letter word
+        if(response.equals("1")){
+            answer = SelectWord.SelectFiveLetterWord();
+            level = 1;
+        }
         //level 2 - eight letter word
-        if(response.equals("2")){
+        else if(response.equals("2")){
             answer = SelectWord.SelectEightLetterWord();
             level = 2;
         }
@@ -197,10 +214,10 @@ public class Word{
             answer = SelectWord.SelectTwelveLetterWord();
             level = 3;
         }
-        //level 1 - five letter word - default
+        //wrong input
         else{
-            answer = SelectWord.SelectFiveLetterWord();
-            level = 1;
+            System.out.println("Response invalid. Please try again.");
+            selectLevel();
         }
     }
 
@@ -217,6 +234,7 @@ public class Word{
      * Gets users input
      */
     public static void newGame() throws IOException{
+        ingame = true;
         selectLevel();
         selectDifficulty();
         lastDisplayed = null;

@@ -105,6 +105,10 @@ public class Market {
         else if(response.equals("2")){
             buy();
         }
+        else{
+            System.out.println("Response invalid. Please try again.");
+            displayMarket();
+        }
     }
 
     //method that lets the user buy an item
