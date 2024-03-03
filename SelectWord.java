@@ -53,7 +53,7 @@ public class SelectWord {
         }
         else{ //if it is a demo
             int n = (int)Math.floor(Math.random() * (5)); //selects random line from five letter word database
-            System.out.println(n);
+            //System.out.println(n);
             try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoFiveLetters.txt"))){
                 answer = lines.skip(n).findFirst().get(); //returns the word from line n
                 if(UsedWords.checkUsed(answer) == true){
@@ -90,7 +90,7 @@ public class SelectWord {
         }
         else{ //if it is a demo
             int n = (int)Math.floor(Math.random() * (5)); 
-            System.out.println(n);
+            //System.out.println(n);
             try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoEightLetters.txt"))){
                 answer = lines.skip(n).findFirst().get(); //returns the word from line n
                 if(UsedWords.checkUsed(answer) == true){
@@ -126,7 +126,7 @@ public class SelectWord {
         }
         else{
             int n = (int)Math.floor(Math.random() * (5)); 
-            System.out.println(n);
+            //System.out.println(n);
             try (Stream<String> lines = Files.lines(Paths.get("Database-Related\\demoTwelveLetters.txt"))){
                 answer = lines.skip(n).findFirst().get(); //returns the word from line n
                 if(UsedWords.checkUsed(answer) == true){
